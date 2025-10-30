@@ -45,12 +45,10 @@
     let redirectPage = '';
 
     if (relay === 'relay1') {
-      endpoint = 'https://abc123.ngrok.io/trigger1'; // Replace with your actual ngrok URL
-      redirectPage = 'start-show.html';
-    } else if (relay === 'relay2') {
-      endpoint = 'https://abc123.ngrok.io/trigger2'; // Replace with your actual ngrok URL
-      redirectPage = 'adult-show.html';
-    }
+  endpoint = 'https://unfeted-legible-leland.ngrok-free.dev/trigger1';
+} else if (relay === 'relay2') {
+  endpoint = 'https://unfeted-legible-leland.ngrok-free.dev/trigger2';
+}
 
     fetch(endpoint, { method: 'POST' })
       .then(res => {
