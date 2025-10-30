@@ -5,37 +5,62 @@
   <title>Island Street Lights</title>
   <style>
     body {
-      background-color: #000;
+      font-family: Arial, sans-serif;
+      background: #111;
       color: #fff;
-      font-family: sans-serif;
       text-align: center;
       padding-top: 100px;
     }
-    h1 {
-      font-size: 3em;
-      margin-bottom: 40px;
-    }
-    .button {
-      display: block;
-      margin: 20px auto;
-      padding: 20px 40px;
+    button {
       font-size: 1.5em;
-      background-color: #0f0;
-      color: #000;
+      padding: 15px 30px;
+      margin: 20px;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      text-decoration: none;
+      background-color: #28a745;
+      color: white;
     }
-    .button.adult {
-      background-color: #f00;
-      color: #fff;
+    button:hover {
+      background-color: #218838;
+    }
+    .adult {
+      background-color: #dc3545;
+    }
+    .adult:hover {
+      background-color: #c82333;
     }
   </style>
 </head>
 <body>
   <h1>🎄 Island Street Lights 🎄</h1>
-  <a href="start-show.html" class="button">Start the Show</a>
-  <a href="adult-show.html" class="button adult">Adult 18+ Version</a>
+  <p>Welcome to the show! Choose your experience:</p>
+
+  <button onclick="triggerRelay('relay1')">Start Show</button>
+  <button class="adult" onclick="triggerRelay('relay2')">18+ Access</button>
+
+  <script>
+    function triggerRelay(relay) {
+      let endpoint = '';
+
+      if (relay === 'relay1') {
+        endpoint = 'https://abc123.ngrok.io/trigger1'; // Replace with your actual ngrok URL
+      } else if (relay === 'relay2') {
+        endpoint = 'https://abc123.ngrok.io/trigger2'; // Replace with your actual ngrok URL
+      }
+
+      fetch(endpoint, { method: 'POST' })
+        .then(res => {
+          if (res.ok) {
+            alert(relay + ' activated!');
+          } else {
+            alert('Failed to trigger ' + relay);
+          }
+        })
+        .catch(err => {
+          alert('Error: ' + err);
+        });
+    }
+  </script>
 </body>
 </html>
