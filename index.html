@@ -45,10 +45,12 @@
     let redirectPage = '';
 
     if (relay === 'relay1') {
-  endpoint = 'https://unfeted-legible-leland.ngrok-free.dev/trigger1';
-} else if (relay === 'relay2') {
-  endpoint = 'https://unfeted-legible-leland.ngrok-free.dev/trigger2';
-}
+      endpoint = 'https://unfeted-legible-leland.ngrok-free.dev/trigger1';
+      redirectPage = 'start-show.html'; // ✅ Add this line
+    } else if (relay === 'relay2') {
+      endpoint = 'https://unfeted-legible-leland.ngrok-free.dev/trigger2';
+      redirectPage = 'adult-show.html'; // ✅ Add this line
+    }
 
     fetch(endpoint, { method: 'POST' })
       .then(res => {
