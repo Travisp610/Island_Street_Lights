@@ -39,28 +39,32 @@
   <button onclick="triggerRelay('relay1')">Start-Show</button>
   <button class="adult" onclick="triggerRelay('relay2')">adult-show</button>
 
-  <script>
-    function triggerRelay(relay) {
-      let endpoint = '';
+<script>
+  function triggerRelay(relay) {
+    let endpoint = '';
+    let redirectPage = '';
 
-      if (relay === 'relay1') {
-        endpoint = 'https://abc123.ngrok.io/trigger1'; // Replace with your actual ngrok URL
-      } else if (relay === 'relay2') {
-        endpoint = 'https://abc123.ngrok.io/trigger2'; // Replace with your actual ngrok URL
-      }
-
-      fetch(endpoint, { method: 'POST' })
-        .then(res => {
-          if (res.ok) {
-            alert(relay + ' activated!');
-          } else {
-            alert('Failed to trigger ' + relay);
-          }
-        })
-        .catch(err => {
-          alert('Error: ' + err);
-        });
+    if (relay === 'relay1') {
+      endpoint = 'https://abc123.ngrok.io/trigger1'; // Replace with your actual ngrok URL
+      redirectPage = 'start-show.html';
+    } else if (relay === 'relay2') {
+      endpoint = 'https://abc123.ngrok.io/trigger2'; // Replace with your actual ngrok URL
+      redirectPage = 'adult-show.html';
     }
-  </script>
+
+    fetch(endpoint, { method: 'POST' })
+      .then(res => {
+        if (res.ok) {
+          window.location.href = redirectPage;
+        } else {
+          alert('Failed to trigger ' + relay);
+        }
+      })
+      .catch(err => {
+        alert('Error: ' + err);
+      });
+  }
+</script>
+
 </body>
 </html>
